@@ -61,46 +61,10 @@
       // ❗ WARNING: except for `getAllReversed`, methods must respect the order of the integers
       // ❗ WARNING: note that except for push and pop, the methods don't change the `ints` property
     class Integers {
-      constructor(...int) {
-        this.ints = int
-      }
-
-      getAll() {
-        
-      }
-
-      getEvens() {
-        return int % 2 === 0 ? int : !int
-        return this.int
-      }
-
-      getNegatives() {
-
-        }
-
-      getAllSquared() {
-
-      }
-      pop() {
-        const newInts = ints.pop()
-        return newInts
-      }
-
-      push() {
-
-      }
-
-      getEveryNth() {
-
-      }
-
-      getAllReversed() {
-
-      }
+  
     }
 
     // 👉 CHALLENGE 2 NerfGun
-    class NerfGun {
       // 🧠 Constructor takes one argument: the total number of projectiles supported by the instance
       // 🧠 New instances initialize fully loaded and with the safety on
       // 🧠 Instances have a `shoot` method that takes no arguments:
@@ -114,37 +78,36 @@
       //      * When engaging the safety, return "Safety enabled!"
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
+      class NerfGun {
+        // safety starts on
       safety = true
         constructor(total) {
-          this.number = total
-
+          this.ammo = total
+          this.projectile = 0
         }
         toggleSafety() {
-          if (this.safety === true) {
-            let safe = this.safety
-            return "Safety disabled!"
-          } else {
+          this.safety = !this.safety // needs to be the opposite to toggle
+          if (this.safety) {
             return "Safety enabled!"
+          } else {
+            return "Safety disabled!"
           }
-
         }
         shoot() {
-          if (!this.safe) {
-            return "Click!"
+          if (!this.safety) { // safetys off
+            return "Bang!" 
           } else {
-            return "Bang!"
+            return "Click!"
           }
-
-
-
         }
         reload(num) {
           // return ` ${num} projectiles left!"`
           // if (this.number < 0) return "Error reloading!"
         }
     }
+  
     const gun = new NerfGun()
-    console.log(gun);
+    
 
     // 👉 CHALLENGE 3 EBook
     class EBook {
