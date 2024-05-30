@@ -45,10 +45,12 @@
     // ❗ Debug properly using the Console
 
     // 👉 CHALLENGE 1 - Integers
-    class Integers {
+    
+      // int = [...int]
       // 🧠 Constructor takes **any** number of arguments, which are integers
+        // build constructor (...ints)
       // 🧠 Instances have an `ints` property which is an array holding the integers above in the same order
-      // 🧠 Implement a `getAll` method which returns the data held in the `ints` property
+      // 🧠 Implement a `getAll` method which returns the data held in the `ints` property 
       // 🧠 Implement a `getEvens` method which returns an array with the integers that are even
       // 🧠 Implement a `getNegatives` method which returns an array with the integers that negative
       // 🧠 Implement a `getAllSquared` method which returns an array with the integers squared
@@ -58,7 +60,43 @@
       // 🧠 Implement a `getAllReversed` method which returns the ints in reverse order
       // ❗ WARNING: except for `getAllReversed`, methods must respect the order of the integers
       // ❗ WARNING: note that except for push and pop, the methods don't change the `ints` property
+    class Integers {
+      constructor(...int) {
+        this.ints = int
+      }
 
+      getAll() {
+        
+      }
+
+      getEvens() {
+        return int % 2 === 0 ? int : !int
+        return this.int
+      }
+
+      getNegatives() {
+
+        }
+
+      getAllSquared() {
+
+      }
+      pop() {
+        const newInts = ints.pop()
+        return newInts
+      }
+
+      push() {
+
+      }
+
+      getEveryNth() {
+
+      }
+
+      getAllReversed() {
+
+      }
     }
 
     // 👉 CHALLENGE 2 NerfGun
@@ -76,8 +114,37 @@
       //      * When engaging the safety, return "Safety enabled!"
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
+      safety = true
+        constructor(total) {
+          this.number = total
 
+        }
+        toggleSafety() {
+          if (this.safety === true) {
+            let safe = this.safety
+            return "Safety disabled!"
+          } else {
+            return "Safety enabled!"
+          }
+
+        }
+        shoot() {
+          if (!this.safe) {
+            return "Click!"
+          } else {
+            return "Bang!"
+          }
+
+
+
+        }
+        reload(num) {
+          // return ` ${num} projectiles left!"`
+          // if (this.number < 0) return "Error reloading!"
+        }
     }
+    const gun = new NerfGun()
+    console.log(gun);
 
     // 👉 CHALLENGE 3 EBook
     class EBook {
@@ -96,7 +163,7 @@
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
 
-    }
+     }
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
