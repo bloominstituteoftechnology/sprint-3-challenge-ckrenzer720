@@ -79,38 +79,40 @@
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
       class NerfGun {
-        // safety starts on
-      safety = true
         constructor(total) {
-          this.ammo = total
-          this.projectile = 0
+          this.max = total // always starts fully loaded
+          this.projectile = total // unloading projectiles
+          this.safety = true // safety starts on
         }
         toggleSafety() {
           this.safety = !this.safety // needs to be the opposite to toggle
-          if (this.safety) {
-            return "Safety enabled!"
-          } else {
-            return "Safety disabled!"
-          }
+          return this.safety ? "Safety enabled!" : "Safety disabled!"
         }
         shoot() {
-          if (!this.safety) { // safetys off
-            return "Bang!" 
+          if ((this.projectile > 0) && !this.safety) { // if more projectiles than 0 and safety is off we can shoot
+            this.projectile--
+            return "Bang!"
           } else {
             return "Click!"
           }
         }
         reload(num) {
-          // return ` ${num} projectiles left!"`
-          // if (this.number < 0) return "Error reloading!"
+          if (typeof num !== 'number' || num <= 0) {
+            return "Error reloading!" // has to be a number in order to properly execute
+          }
+          this.projectile += num // adding projectile to max
+          if (this.projectile > this.max) {
+            this.projectile = this.max // sets to capacity if larger than total
+          }
+          return `${this.projectile} projectiles left!`
         }
     }
   
-    const gun = new NerfGun()
-    
+    const gun = new NerfGun(5)
+    // console.log(gun);
 
     // 👉 CHALLENGE 3 EBook
-    class EBook {
+    
       // 🧠 Constructor takes two arguments:
       //      * First arg is a string with the whole text of the book
       //      * Second arg is the number of characters contained in a single page of the book
@@ -125,11 +127,11 @@
       //    ebook.next() // returns null
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
-
+      class EBook {
      }
 
     // 👉 CHALLENGE 4 AntFarm
-    class AntFarm {
+    
       // 🧠 Constructor takes **any** number of arguments, which are strings: the names of your ants
       // 🧠 Instances of AntFarm have an `ants` property holding an array of ants:
       //      * Each ant is an object with a `name` prop and a `health` prop that starts at 100
@@ -160,8 +162,27 @@
       //      console.log(list) // prints ["a"]
       // 👉 HINT: if you are not feeling confident with map and filter, solve the problem with for loops,
       //      and with the piece of mind of all tests passing, refactor to use map/filter
-
-    }
+      // [{name, health}, {name, health}]
+      class AntFarm {
+        constructor(name, health,) {
+         this.name = name;
+         this.health = health;
+         this.ants = [];
+        }
+        work() {
+          for (let i = 0; i <= this.ants.length; i++ ) {
+            if (this.ants.length === 0) {
+              return "No ants here. Did you work them to death?";
+            } else if (this.health <= 0) {
+              return 'dead'
+            }
+          }
+        }
+        feed(name) {
+          
+        }
+      }
+      const farm = new AntFarm();
 
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
