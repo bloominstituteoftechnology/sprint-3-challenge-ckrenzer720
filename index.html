@@ -89,14 +89,23 @@
         }
         pop() {
           // removes last integer
-          console.log(this.int.pop());
-          console.log(this.int);
-          return this.int
+          // this.arr = this.arr.pop(this.int);
+          // console.log(this.int);
+          // console.log(this.arr);
+          // return this.arr, this.int
         }
-        push() {}
-        getEveryNth() {}
-        getAllReversed() {}
+        push() {
+          this.newArr[this.int] = this.arr.push()
+          return this.newArr[this.int]
+        }
+        getEveryNth() {
+          // console.log(this.int);
       }
+        getAllReversed() {
+          this.newArr = this.arr.reverse()
+          return this.newArr
+        }
+    }
       const num = new Integers();
 
       // 👉 CHALLENGE 2 NerfGun
@@ -163,7 +172,19 @@
       //    ebook.next() // returns null
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
-      class EBook {}
+      class EBook {
+        constructor(str, num) {
+          this.str = str
+          this.num = num
+        }
+        next() {
+          const sentence = this.str.split('')
+          console.log(sentence);
+          const letters = sentence.slice()
+          console.log(letters);
+        }
+      }
+      const book = new EBook()
 
       // 👉 CHALLENGE 4 AntFarm
 
@@ -199,13 +220,29 @@
       //      and with the piece of mind of all tests passing, refactor to use map/filter
       // [{name, health}, {name, health}]
       class AntFarm {
-        constructor(name, health) {
-          this.name = name;
-          this.health = health;
-          this.ants = [];
+        constructor(...antNames) {
+          this.antNames = antNames;
+          this.ants = this.makeAnts()
+          // ants property
         }
+        // work method
+          // decrement 20 hp / each
+          // if no ants return string
+          // if hp below 0 --> delete ant
+
+        // ant maker method
+        makeAnts() {
+          return this.antNames.map((name) => {
+            return new Ant(name);
+          });
+        }
+
+        // feeder method
+          // add 15 hp / ant name
+          // return string if ant name exists
+          // return other string if ant doesnt exist 
       }
-      const farm = new AntFarm();
+      const farm = new AntFarm("conner", "zac");
 
       // 🧪 TESTS, do not make any changes below this line ===================
       // 🧪 TESTS, do not make any changes below this line ===================
