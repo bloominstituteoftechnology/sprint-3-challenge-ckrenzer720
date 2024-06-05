@@ -46,7 +46,7 @@
 
       // 👉 CHALLENGE 1 - Integers
 
-      // int = [...int]
+      // ints = [...ints]
       // 🧠 Constructor takes **any** number of arguments, which are integers
       // build constructor (...ints)
       // 🧠 Instances have an `ints` property which is an array holding the integers above in the same order
@@ -55,57 +55,57 @@
       // 🧠 Implement a `getNegatives` method which returns an array with the integers that negative
       // 🧠 Implement a `getAllSquared` method which returns an array with the integers squared
       // 🧠 Implement a `pop` method which removes the last integer from `ints`  and returns it
-      // 🧠 Implement a `push` method which takes an int and pushes it to the end of `ints`, and returns the updated `ints` property
-      // 🧠 Implement a `getEveryNth` method which takes an int `n` and returns an array with the ints at position 0, n, n + n, n + n + n, etc
+      // 🧠 Implement a `push` method which takes an ints and pushes it to the end of `ints`, and returns the updated `ints` property
+      // 🧠 Implement a `getEveryNth` method which takes an ints `n` and returns an array with the ints at position 0, n, n + n, n + n + n, etc
       // 🧠 Implement a `getAllReversed` method which returns the ints in reverse order
       // ❗ WARNING: except for `getAllReversed`, methods must respect the order of the integers
       // ❗ WARNING: note that except for push and pop, the methods don't change the `ints` property
       class Integers {
         constructor(...ints) {
-          this.int = ints;
-          this.arr = this.int;
+          this.ints = ints;
           this.newArr = [];
         }
         getAll() {
-          for (let i = 0; i < this.int.lenght; i++) {
-            this.int.push(this.newArr[i]);
+          for (let i = 0; i < this.ints.lenght; i++) {
+            this.ints.push(this.newArr[i]);
           }
-          return this.int;
+          return this.ints;
         }
         getEvens() {
-          let evenNums = this.arr.filter((nums) => nums % 2 === 0);
+          let evenNums = this.ints.filter((nums) => nums % 2 === 0);
           this.newArr = evenNums;
           return this.newArr;
         }
         getNegatives() {
-          let negativeNums = this.arr.filter((nums) => nums < 0);
+          let negativeNums = this.ints.filter((nums) => nums < 0);
           this.newArr = negativeNums;
           return this.newArr;
         }
         getAllSquared() {
-          let squareNums = this.arr.map((nums) => nums ** 2);
+          let squareNums = this.ints.map((nums) => nums ** 2);
           this.newArr = squareNums;
           return this.newArr;
         }
         pop() {
-          // removes last integer
-          // this.arr = this.arr.pop(this.int);
-          // console.log(this.int);
-          // console.log(this.arr);
-          // return this.arr, this.int
+          let result = this.ints.pop();
+          return result;
         }
-        push() {
-          this.newArr[this.int] = this.arr.push()
-          return this.newArr[this.int]
+        push(int) {
+          this.newArr = this.ints.push(int);
+          return this.ints;
         }
-        getEveryNth() {
-          // console.log(this.int);
-      }
+        getEveryNth(n) {
+          let result = [];
+          for (let i = 0; i < this.ints.length; i += n) {
+            result.push(this.ints[i]);
+          }
+          return result;
+        }
         getAllReversed() {
-          this.newArr = this.arr.reverse()
-          return this.newArr
+          this.newArr = this.ints.reverse();
+          return this.newArr;
         }
-    }
+      }
       const num = new Integers();
 
       // 👉 CHALLENGE 2 NerfGun
@@ -174,17 +174,22 @@
       // ❗ Feel free to implement `back`, although this is not required nor graded
       class EBook {
         constructor(str, num) {
-          this.str = str
-          this.num = num
+          this.str = str;
+          this.num = num;
+          this.page = 0;
         }
         next() {
-          const sentence = this.str.split('')
-          console.log(sentence);
-          const letters = sentence.slice()
-          console.log(letters);
+          let result = []
+          for (let i = 0; i < this.str.length; i += this.num) {
+            result.push(this.str.slice(i, i + this.num));
+            if ( this.str === 0) {
+              return null
+            }
+          }
+          return result
         }
       }
-      const book = new EBook()
+      const book = new EBook('abcdefg', 3);
 
       // 👉 CHALLENGE 4 AntFarm
 
@@ -222,27 +227,22 @@
       class AntFarm {
         constructor(...antNames) {
           this.antNames = antNames;
-          this.ants = this.makeAnts()
-          // ants property
+          this.health = 100
         }
+        // ant maker method
+          // populates the AntFarm with more ants
+
         // work method
           // decrement 20 hp / each
           // if no ants return string
           // if hp below 0 --> delete ant
 
-        // ant maker method
-        makeAnts() {
-          return this.antNames.map((name) => {
-            return new Ant(name);
-          });
-        }
-
         // feeder method
           // add 15 hp / ant name
           // return string if ant name exists
-          // return other string if ant doesnt exist 
+          // return other string if ant doesnt exist
       }
-      const farm = new AntFarm("conner", "zac");
+      const farm = new AntFarm();
 
       // 🧪 TESTS, do not make any changes below this line ===================
       // 🧪 TESTS, do not make any changes below this line ===================
@@ -305,7 +305,7 @@
           },
           function () {
             let actual,
-              description = "pop removes the last int and returns it";
+              description = "pop removes the last ints and returns it";
             let expected = [3, [1, 2]];
             try {
               const ints = new Integers(1, 2, 3);
