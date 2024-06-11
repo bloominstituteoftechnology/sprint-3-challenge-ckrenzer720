@@ -179,17 +179,17 @@
           this.page = 0;
         }
         next() {
-          let result = []
+          let result = [];
           for (let i = 0; i < this.str.length; i += this.num) {
             result.push(this.str.slice(i, i + this.num));
-            if ( this.str === 0) {
-              return null
+            if (this.str === 0) {
+              return null;
             }
           }
-          return result
+          return result;
         }
       }
-      const book = new EBook('abcdefg', 3);
+      const book = new EBook("abcdefg", 3);
 
       // 👉 CHALLENGE 4 AntFarm
 
@@ -226,23 +226,54 @@
       // [{name, health}, {name, health}]
       class AntFarm {
         constructor(...antNames) {
-          this.antNames = antNames;
-          this.health = 100
+          this.ants = antNames.map((name) => {
+            return { name, health: 100 };
+          });
+          // console.log(this.ants);
         }
-        // ant maker method
-          // populates the AntFarm with more ants
 
         // work method
-          // decrement 20 hp / each
-          // if no ants return string
-          // if hp below 0 --> delete ant
-
-        // feeder method
-          // add 15 hp / ant name
-          // return string if ant name exists
-          // return other string if ant doesnt exist
+        work() {
+          let result = `${this.ants.length} ants starting work!`;
+          // if 'ants' has no ants -> "No ants here. Did you work them to death?"
+          if (this.ants === 0) {
+            return "No ants here. Did you work them to death?";
+          }
+          // when invoked 20 hp is lost
+          this.ants = this.ants.map((hp) => {
+            hp.health -= 20;
+            return hp;
+          });
+          // if hp < 0 the ant dies and its removed from 'ants'
+          this.ants = this.ants.filter((ant) => ant.health > 0);
+          // console.log(result);
+          // console.log(this.ants);
+        }
+        // feed method
+        feed(antName) {
+          // name argument
+          let name = false;
+          // increase 15 hp with each invication
+          for (let i = 0; i < this.ants.length; i++) {
+            if (this.ants[i].name === antName) {
+              // if the index name of .name is equal to the antName argument
+              this.ants[i].health += 15; // add 15 hp to that name
+              name = true;
+            }
+          }
+          // return -> "Yum!" -- if any ants by the given name exist
+          if (name) {
+            return "Yum!";
+          } else {
+            // return -> "<ant name> not found!" -- if no ants by the given name exist
+            return `${antName} not found!`;
+          }
+        }
       }
-      const farm = new AntFarm();
+      const farm = new AntFarm("conner", "zac", "lilah");
+      farm.work();
+      farm.feed();
+      console.log(farm);
 
       // 🧪 TESTS, do not make any changes below this line ===================
       // 🧪 TESTS, do not make any changes below this line ===================
